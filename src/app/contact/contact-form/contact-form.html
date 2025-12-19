@@ -1,1 +1,45 @@
-<p>contact-form works!</p>
+<h5 class="text-center mt-4">User List</h5>
+
+@if (users.length === 0) {
+  <p class="text-center text-muted">No users added</p>
+}
+
+@if (users.length > 0) {
+  <div class="table-responsive">
+    <table class="table table-bordered table-hover align-middle mt-3">
+      <thead class="table-dark">
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Address</th>
+          <th class="text-center">Actions</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        @for (user of users; let i = $index; track user.email) {
+          <tr>
+            <td>{{ i + 1 }}</td>
+            <td>{{ user.name }}</td>
+            <td>{{ user.email }}</td>
+            <td>{{ user.address }}</td>
+            <td class="text-center">
+              <button
+                class="btn btn-sm btn-warning me-2"
+                (click)="editUser(user, i)">
+                Edit
+              </button>
+
+              <button
+                class="btn btn-sm btn-danger"
+                (click)="deleteUser(i)">
+                Delete
+              </button>
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+}

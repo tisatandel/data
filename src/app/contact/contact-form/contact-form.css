@@ -1,0 +1,111 @@
+/* Section title */
+h5 {
+  text-align: center;
+  margin-top: 30px;
+  margin-bottom: 15px;
+  font-size: 20px;
+  font-weight: 600;
+  color: #2c3e50;
+}
+
+/* Empty text */
+.text-muted {
+  text-align: center;
+  color: #888;
+  font-size: 14px;
+  margin-top: 10px;
+}
+
+/* Table container */
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+}
+
+/* Table */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #ffffff;
+  margin-top: 15px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
+}
+
+/* Table header */
+.table thead {
+  background: #2ecc71;
+  color: #ffffff;
+}
+
+.table th,
+.table td {
+  padding: 12px 14px;
+  font-size: 14px;
+  border-bottom: 1px solid #eaeaea;
+  text-align: left;
+}
+
+.table th {
+  font-weight: 600;
+}
+
+/* Hover row */
+.table tbody tr:hover {
+  background: #f3fdf7;
+}
+
+/* Center align */
+.text-center {
+  text-align: center;
+}
+
+/* Buttons */
+.btn {
+  border: none;
+  border-radius: 8px;
+  padding: 6px 12px;
+  font-size: 13px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+/* Edit button */
+.btn-warning {
+  background: #f39c12;
+  color: #fff;
+}
+
+.btn-warning:hover {
+  background: #e67e22;
+}
+
+/* Delete button */
+.btn-danger {
+  background: #e74c3c;
+  color: #fff;
+}
+
+.btn-danger:hover {
+  background: #c0392b;
+}
+
+/* Space between buttons */
+.me-2 {
+  margin-right: 6px;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .table th,
+  .table td {
+    font-size: 13px;
+    padding: 10px;
+  }
+
+  .btn {
+    padding: 5px 10px;
+    font-size: 12px;
+  }
+}

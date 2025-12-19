@@ -1,0 +1,85 @@
+<div class="container mt-4">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+
+      <div class="card shadow">
+        <div class="card-body">
+          <h4 class="text-center mb-3">
+            {{ isEditMode ? 'Edit User' : 'Add User' }}
+          </h4>
+
+          <form>
+            <div class="mb-3">
+              <input
+                class="form-control"
+                placeholder="Name"
+                [(ngModel)]="name"
+                name="name">
+            </div>
+
+            <div class="mb-3">
+              <input
+                class="form-control"
+                placeholder="Email"
+                [(ngModel)]="email"
+                name="email">
+            </div>
+
+            <div class="mb-3">
+              <input
+                class="form-control"
+                placeholder="Address"
+                [(ngModel)]="address"
+                name="address">
+            </div>
+
+            <button
+              type="button"
+              class="btn w-100"
+              
+              (click)="addOrUpdate()">
+              {{ isEditMode ? 'Update' : 'Add' }}
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <hr>
+
+      <app-contact-form
+        [users]="users"
+        (edit)="editUser($event)"
+        (delete)="deleteUser($event)">
+      </app-contact-form>
+
+
+    </div>
+  </div>
+</div>
+<div class="container mt-5 text-center">
+
+  <!-- SMALL BUTTON -->
+  <button
+    type="button"
+    class="btn btn-primary add-btn"
+    data-bs-toggle="modal"
+    data-bs-target="#simpleModal">
+    + Add Contact
+  </button>
+
+</div>
+
+<!-- POPUP -->
+<div class="modal fade" id="simpleModal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Hello</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <p>This is a simple popup.</p>
+      </div>
+    </div>
+  </div>
+</div>
