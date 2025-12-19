@@ -1,64 +1,24 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { ContactForm } from './contact-form/contact-form';
-
-
+import { RouterLink } from "@angular/router";
 
 @Component({
   selector: 'app-contact',
-  imports: [FormsModule,ContactForm],
+  imports: [FormsModule],
   templateUrl: './contact.html',
   styleUrl: './contact.css',
-  standalone: true,
 })
-export class Contact{
-  users: any[] = [];
+export class Contact {
+  @Input() users: any[] = [];
 
-  name = '';
-  email = '';
-  address = '';
+  @Output() edit = new EventEmitter<{ user: any; index: number }>();
+  @Output() delete = new EventEmitter<number>();
 
-  isEditMode = false;
-  editIndex: number | null = null;
-
-  addOrUpdate() {
-    if (!this.name || !this.email || !this.address) return;
-
-    if (this.isEditMode && this.editIndex !== null) {
-      this.users[this.editIndex] = {
-        name: this.name,
-        email: this.email,
-        address: this.address
-      };
-    } else {
-      this.users.push({
-        name: this.name,
-        email: this.email,
-        address: this.address
-      });
-    }
-
-    this.reset();
+  editUser(user: any, index: number) {
+    this.edit.emit({ user, index });
   }
 
-  editUser(data: { user: any; index: number }) {
-    this.isEditMode = true;
-    this.editIndex = data.index;
-
-    this.name = data.user.name;
-    this.email = data.user.email;
-    this.address = data.user.address;
-  }
-deleteUser(index: number) {
-  this.users.splice(index, 1);
-}
-
-
-  reset() {
-    this.name = '';
-    this.email = '';
-    this.address = '';
-    this.isEditMode = false;
-    this.editIndex = null;
+  deleteUser(index: number) {
+    this.delete.emit(index);
   }
 }

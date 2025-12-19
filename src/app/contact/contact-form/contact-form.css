@@ -1,111 +1,83 @@
-/* Section title */
-h5 {
-  text-align: center;
-  margin-top: 30px;
-  margin-bottom: 15px;
-  font-size: 20px;
+/* Page background */
+.container {
+  font-family: 'Segoe UI', Tahoma, sans-serif;
+}
+
+/* Card styling */
+.card {
+  border: none;
+  border-radius: 12px;
+}
+
+.card-body {
+  padding: 25px;
+}
+
+/* Form heading */
+.card-body h4 {
   font-weight: 600;
   color: #2c3e50;
 }
 
-/* Empty text */
-.text-muted {
-  text-align: center;
-  color: #888;
-  font-size: 14px;
-  margin-top: 10px;
-}
-
-/* Table container */
-.table-responsive {
-  width: 100%;
-  overflow-x: auto;
-}
-
-/* Table */
-.table {
-  width: 100%;
-  border-collapse: collapse;
-  background: #ffffff;
-  margin-top: 15px;
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
-}
-
-/* Table header */
-.table thead {
-  background: #2ecc71;
-  color: #ffffff;
-}
-
-.table th,
-.table td {
-  padding: 12px 14px;
-  font-size: 14px;
-  border-bottom: 1px solid #eaeaea;
-  text-align: left;
-}
-
-.table th {
-  font-weight: 600;
-}
-
-/* Hover row */
-.table tbody tr:hover {
-  background: #f3fdf7;
-}
-
-/* Center align */
-.text-center {
-  text-align: center;
-}
-
-/* Buttons */
-.btn {
-  border: none;
+/* Inputs */
+.form-control {
   border-radius: 8px;
-  padding: 6px 12px;
-  font-size: 13px;
-  cursor: pointer;
-  transition: 0.3s;
+  padding: 10px 12px;
+  font-size: 14px;
 }
 
-/* Edit button */
-.btn-warning {
-  background: #f39c12;
-  color: #fff;
+.form-control:focus {
+  border-color: #0d6efd;
+  box-shadow: 0 0 0 0.15rem rgba(13, 110, 253, 0.25);
 }
 
-.btn-warning:hover {
-  background: #e67e22;
+/* Add / Update button */
+button.btn-primary {
+  border-radius: 8px;
+  padding: 10px;
+  font-weight: 500;
 }
 
-/* Delete button */
-.btn-danger {
-  background: #e74c3c;
-  color: #fff;
+/* Divider */
+hr {
+  margin: 30px 0;
+  opacity: 0.15;
 }
 
-.btn-danger:hover {
-  background: #c0392b;
+/* Small Add Contact button */
+.add-btn {
+  padding: 8px 16px;
+  font-size: 14px;
+  border-radius: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
 }
 
-/* Space between buttons */
-.me-2 {
-  margin-right: 6px;
+/* Modal customization */
+.modal-content {
+  border-radius: 12px;
 }
 
-/* Responsive */
-@media (max-width: 600px) {
-  .table th,
-  .table td {
-    font-size: 13px;
-    padding: 10px;
+.modal-header {
+  border-bottom: none;
+}
+
+.modal-title {
+  font-weight: 600;
+  color: #2c3e50;
+}
+
+.modal-body {
+  font-size: 14px;
+  color: #555;
+}
+
+/* Responsive tweak */
+@media (max-width: 576px) {
+  .card-body {
+    padding: 18px;
   }
 
-  .btn {
-    padding: 5px 10px;
-    font-size: 12px;
+  .add-btn {
+    width: 100%;
   }
 }
