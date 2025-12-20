@@ -1,14 +1,65 @@
-/* AddContactComponent CSS */
+/* Fullscreen opaque background when modal is open */
+::ng-deep .modal.show {
+  background-image: url(C:/Users/tisa/OneDrive/Desktop/Tag97/data/public/images/bg2.jpeg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 1;                 /* Remove transparency */
+}
 
-/* ::ng-deep ensures styles penetrate modal */
+/* For browsers that may not support ::backdrop, fallback */
+::ng-deep .modal.show {
+  background-color: skyblue !important;
+  opacity: 1 !important;
+}
+
+/* Modal dialog styling */
 ::ng-deep #contactModal .modal-dialog {
   max-width: 520px;
   margin: 10% auto;
+  z-index: 1055;  /* Above backdrop */
 }
 
+/* Modal content card */
 ::ng-deep #contactModal .modal-content {
   border-radius: 12px;
   padding: 20px;
+  position: relative;
+  z-index: 1056;  /* Above backdrop */
+}
+
+/* Modal header center & title red */
+::ng-deep #contactModal .modal-header {
+  display: flex;
+  justify-content: center;
+  border-bottom: none;
+  position: relative;
+}
+
+::ng-deep #contactModal .modal-header .modal-title {
+  
+  font-weight: 600;
+  background: linear-gradient(to right,#05619f,#0fab06);
+  background-clip: text;
+  color: transparent;
+}
+
+::ng-deep #contactModal .modal-header .btn-close {
+  position: absolute;
+  right: 15px;
+  background: none;
+  line-height: 1;
+  font-size: 40px;
+  color: red;
+  opacity: 1;
+
+}
+::ng-deep #contactModal .modal-header .btn-close::before{
+    content: "\00d7";
+    color: red;
+}
+::ng-deep #contactModal .modal-header .btn-close:hover::before{
+    color: rgb(217, 24, 24);
 }
 
 /* Modal body padding */
@@ -18,17 +69,27 @@
 
 /* Labels */
 ::ng-deep #contactModal label {
-  font-weight: 500;
-  color: #444;
-  width: 100px;
+  font-weight: 600;
+  background: linear-gradient(to right,#1db3e0,#4402ea);
+  background-clip: text;
+  color: transparent;
+  width: 120px;
+  white-space: nowrap;
 }
 
 /* Inputs */
 ::ng-deep #contactModal input.form-control {
   border-radius: 6px;
   height: 42px;
-  border: 1px solid #ced4da;
+  border: 2px solid green;
   padding-left: 10px;
+  color: blue;
+}
+
+/* Input focus */
+::ng-deep #contactModal input.form-control:focus {
+  border-color: red;
+  box-shadow: 0 0 5px rgba(255, 0, 0, 0.5);
 }
 
 /* Button */
@@ -38,9 +99,13 @@
   font-size: 16px;
   font-weight: 500;
   border-radius: 6px;
+  background: linear-gradient(to right,#09a5b3,#0d9268);
+  color: white;
+  border: none;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
 }
 
-/* Optional: hover effect */
+/* Button hover */
 ::ng-deep #contactModal button.btn-primary:hover {
   opacity: 0.9;
   transform: scale(1.02);
