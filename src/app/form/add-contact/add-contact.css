@@ -1,0 +1,48 @@
+/* AddContactComponent CSS */
+
+/* ::ng-deep ensures styles penetrate modal */
+::ng-deep #contactModal .modal-dialog {
+  max-width: 520px;
+  margin: 10% auto;
+}
+
+::ng-deep #contactModal .modal-content {
+  border-radius: 12px;
+  padding: 20px;
+}
+
+/* Modal body padding */
+::ng-deep #contactModal .modal-body {
+  padding: 20px;
+}
+
+/* Labels */
+::ng-deep #contactModal label {
+  font-weight: 500;
+  color: #444;
+  width: 100px;
+}
+
+/* Inputs */
+::ng-deep #contactModal input.form-control {
+  border-radius: 6px;
+  height: 42px;
+  border: 1px solid #ced4da;
+  padding-left: 10px;
+}
+
+/* Button */
+::ng-deep #contactModal button.btn-primary {
+  margin-top: 15px;
+  height: 44px;
+  font-size: 16px;
+  font-weight: 500;
+  border-radius: 6px;
+}
+
+/* Optional: hover effect */
+::ng-deep #contactModal button.btn-primary:hover {
+  opacity: 0.9;
+  transform: scale(1.02);
+  transition: all 0.2s ease;
+}

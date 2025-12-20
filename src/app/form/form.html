@@ -1,1 +1,75 @@
-<p>form works!</p>
+<div class="contact-wrapper">
+
+  <!-- Heading -->
+  <h3 class="contact-title">Contact List</h3>
+
+  <!-- Add Contact Button (Right Side) -->
+  <div class="add-contact-btn">
+    <button
+      class="btn btn-primary"
+      data-bs-toggle="modal"
+      data-bs-target="#contactModal"
+      (click)="openForm()">
+      Add Contact
+    </button>
+  </div>
+
+  <!-- Contact Table -->
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Phone</th>
+        <th>Email</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let c of contacts; let i = index">
+        <td>{{ c.name }}</td>
+        <td>{{ c.phone }}</td>
+        <td>{{ c.email }}</td>
+        <td>
+          <button
+            class="btn btn-success btn-sm me-2"
+            data-bs-toggle="modal"
+            data-bs-target="#contactModal"
+            (click)="openForm(i)">
+            Edit
+          </button>
+
+          <button
+            class="btn btn-danger btn-sm"
+            (click)="deleteContact(i)">
+            Delete
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="contactModal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h5 class="modal-title">
+          {{ editingIndex !== null ? 'Edit Contact' : 'Add Contact' }}
+        </h5>
+        <button class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <div class="modal-body">
+        <app-add-contact
+          [contact]="editingIndex !== null ? contacts[editingIndex] : null"
+          (contactAdded)="addContactToParent($event)">
+        </app-add-contact>
+      </div>
+
+    </div>
+  </div>
+</div>

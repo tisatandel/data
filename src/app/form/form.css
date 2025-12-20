@@ -1,0 +1,82 @@
+/* Page wrapper for spacing */
+.contact-wrapper {
+  margin: 30px auto;
+  padding: 20px;
+  max-width: 85%;
+}
+
+/* Contact List Heading */
+.contact-title {
+  text-align: center;
+  color: red;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+/* Add Contact Button Right Side */
+.add-contact-btn {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 15px;
+}
+
+/* Table main */
+.table {
+  width: 100%;
+  border-collapse:  separate;
+ border-spacing: 0;
+  border: 1px solid #0b4fb3; /* Sky Blue outer border */
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+}
+
+/* Header */
+.table thead th {
+  background-color: #0b4fb3;
+  color: #ffffff;
+  text-align: center;
+  padding: 14px;
+  border: 2px solid #4169e1; /* Royal Blue lines */
+}
+
+/* Body cells */
+.table tbody td {
+  text-align: center;
+  padding: 14px;
+  font-weight: 500;
+  border: 2px solid #4169e1; /* Royal Blue lines */
+}
+
+/* Row coloring */
+.table tbody tr:nth-child(odd) {
+  background-color: #cfe2ff;
+}
+
+.table tbody tr:nth-child(even) {
+  background-color: #0b4fb3;
+  color: #ffffff;
+}
+
+/* Hover effect */
+.table tbody tr:hover {
+  background-color: #9ec5fe;
+  color: #000;
+  transition: 0.3s ease;
+}
+
+/* Buttons */
+.table .btn {
+  min-width: 70px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .contact-wrapper {
+    max-width: 95%;
+  }
+
+  .table {
+    font-size: 14px;
+  }
+}
