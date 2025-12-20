@@ -1,21 +1,23 @@
-<body>
-    <form>
+<form>
   <div class="mb-3 d-flex align-items-center">
-    <label class="me-3" >Enter Name :</label>
+    <label class="me-3">Enter Name :</label>
     <input class="form-control" [(ngModel)]="name" name="name">
   </div>
 
   <div class="mb-3 d-flex align-items-center">
-    <label class="me-3" >Enter Phone :</label>
+    <label class="me-3">Enter Phone :</label>
     <input class="form-control" [(ngModel)]="phone" name="phone">
   </div>
 
   <div class="mb-3 d-flex align-items-center">
-    <label class="me-3" >Enter Email :</label>
+    <label class="me-3">Enter Email :</label>
     <input class="form-control" [(ngModel)]="email" name="email">
   </div>
 
-  <button type="button" class="btn btn-primary w-100" (click)="addContact()">
+  <button
+    type="button"
+    class="btn btn-primary w-100"
+    (click)="addContact()">
     {{ contact ? 'Update' : 'Add' }} Contact
   </button>
 </form>

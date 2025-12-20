@@ -1,6 +1,12 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+  OnChanges,
+  SimpleChanges
+} from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { BrowserModule } from '@angular/platform-browser';
 
 interface Contact {
   name: string;
@@ -10,26 +16,31 @@ interface Contact {
 
 @Component({
   selector: 'app-add-contact',
-  standalone:true,
-   imports: [FormsModule],
+  standalone: true,
+  imports: [FormsModule],
   templateUrl: './add-contact.html',
   styleUrls: ['./add-contact.css']
 })
-export class AddContact implements OnInit {
+export class AddContact implements OnChanges {
 
-  @Input() contact: Contact | null = null; // Edit mode contact
+  @Input() contact: Contact | null = null;   // Edit mode
   @Output() contactAdded = new EventEmitter<Contact>();
 
   name: string = '';
   phone: string = '';
   email: string = '';
 
-  ngOnInit(): void {
-    // If editing, populate form
-    if (this.contact) {
+  // 🔥 Edit button click par purana data form me aayega
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['contact'] && this.contact) {
       this.name = this.contact.name;
       this.phone = this.contact.phone;
       this.email = this.contact.email;
+    }
+
+    // Add mode ke liye form clear
+    if (changes['contact'] && this.contact === null) {
+      this.resetForm();
     }
   }
 
@@ -46,8 +57,10 @@ export class AddContact implements OnInit {
     };
 
     this.contactAdded.emit(newContact);
+    this.resetForm();
+  }
 
-    // Reset form
+  resetForm() {
     this.name = '';
     this.phone = '';
     this.email = '';
