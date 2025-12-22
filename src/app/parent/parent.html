@@ -1,0 +1,15 @@
+<app-child [name]="names" [age]="ages" (changeName)="names = $event" (changeincreseage)="ages" (changeincreseage)="ages"></app-child>
+&nbsp;&nbsp;&nbsp;
+<button (click)="ages = ages + 1">
+  Increase Age
+</button>
+&nbsp;&nbsp;&nbsp;
+<button (click)="ages = ages - 1">
+  Decrease Age
+</button>
+
+<br/>
+<br/>
+<p>Name: {{ names }}</p>
+<p>Age: {{ ages }}</p>
+

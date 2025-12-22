@@ -23,25 +23,27 @@ interface Contact {
 })
 export class AddContact implements OnChanges {
 
-  @Input() contact: Contact | null = null;   // Edit mode
+  @Input() contact: Contact | null = null;
   @Output() contactAdded = new EventEmitter<Contact>();
 
   name: string = '';
   phone: string = '';
   email: string = '';
 
-  // 🔥 Edit button click par purana data form me aayega
   ngOnChanges(changes: SimpleChanges) {
     if (changes['contact'] && this.contact) {
       this.name = this.contact.name;
       this.phone = this.contact.phone;
       this.email = this.contact.email;
+   
+        
     }
+    
 
-    // Add mode ke liye form clear
     if (changes['contact'] && this.contact === null) {
       this.resetForm();
     }
+    
   }
 
   addContact() {
