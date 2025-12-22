@@ -1,70 +1,85 @@
-import {
-  Component,
-  EventEmitter,
-  Input,
-  Output,
-  OnChanges,
-  SimpleChanges
-} from '@angular/core';
+import { Component, input, output, effect, signal, computed } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 interface Contact {
-  name: string;
-  phone: string;
-  email: string;
+name: string;
+phone: string;
+email: string;
 }
 
 @Component({
-  selector: 'app-add-contact',
-  standalone: true,
-  imports: [FormsModule],
-  templateUrl: './add-contact.html',
-  styleUrls: ['./add-contact.css']
+selector: 'app-add-contact',
+standalone: true,
+imports: [FormsModule],
+templateUrl: './add-contact.html',
+styleUrls: ['./add-contact.css']
 })
-export class AddContact implements OnChanges {
+export class AddContact {
 
-  @Input() contact: Contact | null = null;
-  @Output() contactAdded = new EventEmitter<Contact>();
+// Parent → Child
+contact = input<Contact | null>();
 
-  name: string = '';
-  phone: string = '';
-  email: string = '';
+// Child → Parent
+contactChange = output<Contact>();
 
-  ngOnChanges(changes: SimpleChanges) {
-    if (changes['contact'] && this.contact) {
-      this.name = this.contact.name;
-      this.phone = this.contact.phone;
-      this.email = this.contact.email;
-   
-        
-    }
-    
+// Signals
+name = signal('');
+phone = signal('');
+email = signal('');
 
-    if (changes['contact'] && this.contact === null) {
-      this.resetForm();
-    }
-    
-  }
+// Computed → edit mode
+isEdit = computed(() => !!this.contact());
 
-  addContact() {
-    if (!this.name || !this.phone || !this.email) {
-      alert('All fields are required!');
-      return;
-    }
+// Old values to compare
+private oldName = '';
+private oldPhone = '';
+private oldEmail = '';
 
-    const newContact: Contact = {
-      name: this.name,
-      phone: this.phone,
-      email: this.email
-    };
+constructor() {
 
-    this.contactAdded.emit(newContact);
-    this.resetForm();
-  }
+// Initialize form with input contact  
+effect(() => {  
+  if (this.contact()) {  
+    this.name.set(this.contact()!.name);  
+    this.phone.set(this.contact()!.phone);  
+    this.email.set(this.contact()!.email);  
 
-  resetForm() {
-    this.name = '';
-    this.phone = '';
-    this.email = '';
-  }
+    // Store old values  
+    this.oldName = this.contact()!.name;  
+    this.oldPhone = this.contact()!.phone;  
+    this.oldEmail = this.contact()!.email;  
+  } else {  
+    this.resetForm();  
+  }  
+});  
+
+// Effect → only edit changes  
+effect(() => {  
+  if (this.isEdit() && this.contact()) {  
+    if (this.name() !== this.oldName) console.log('name changed');  
+    if (this.phone() !== this.oldPhone) console.log('phone changed');  
+    if (this.email() !== this.oldEmail) console.log('email changed');  
+  }  
+});
+
+}
+
+addContact() {
+// Emit to parent
+this.contactChange.emit({
+name: this.name(),
+phone: this.phone(),
+email: this.email()
+});
+
+// Reset form only if Add  
+if (!this.contact()) this.resetForm();
+
+}
+
+resetForm() {
+this.name.set('');
+this.phone.set('');
+this.email.set('');
+}
 }

@@ -1,40 +1,47 @@
-import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
-import { AddContact } from './add-contact/add-contact';
+import { CommonModule } from '@angular/common';  
+import { Component } from '@angular/core';  
+import { AddContact } from './add-contact/add-contact';  
 
+declare var bootstrap:any;
 @Component({
-  selector: 'app-form',
-  standalone: true,
-  imports: [CommonModule, AddContact],
-  templateUrl: './form.html',
-  styleUrls: ['./form.css']
+selector: 'app-form',
+standalone: true,
+imports: [CommonModule, AddContact],
+templateUrl: './form.html',
+styleUrls: ['./form.css']
 })
 export class Form {
 
-  contacts: any[] = [];
-  editingIndex: number | null = null;
+contacts: any[] = [];
+editingIndex: number | null = null;
 
-  // Add / Edit button click
-  openForm(index: number | null = null): void {
-    this.editingIndex = index;
-  }
+openForm(index: number | null = null) {
+this.editingIndex = index;
+}
 
-  // Child component se data receive
-  addContactToParent(contact: any): void {
+addContactToParent(contact: any) {
 
-    if (this.editingIndex !== null) {
-      // Edit contact
-      this.contacts[this.editingIndex] = contact;
-    } else {
-      // Add contact
-      this.contacts.push(contact);
-    }
+if (this.editingIndex !== null) {  
+  // Update existing contact  
+  this.contacts[this.editingIndex] = contact;  
+} else {  
+  // Add new contact  
+  this.contacts.push(contact);  
+}  
 
-    this.editingIndex = null;
-  }
+// Reset editingIndex → modal hide / table focus  
+this.editingIndex = null;  
 
-  // Delete contact
-  deleteContact(index: number): void {
-    this.contacts.splice(index, 1);
-  }
+// Close modal programmatically  
+const modalEl = document.getElementById('contactModal');  
+if (modalEl) {  
+  const modal = bootstrap.Modal.getInstance(modalEl);  
+  modal?.hide();  
+}
+
+}
+
+deleteContact(index: number) {
+this.contacts.splice(index, 1);
+}
 }
